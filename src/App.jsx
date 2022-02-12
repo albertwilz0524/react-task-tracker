@@ -9,13 +9,39 @@ function App() {
     { id: 3, text: "task 3", day: "wednesday", reminder: false },
   ]);
 
+  const handleAdd = () => {
+    let currentIds = [];
+
+    for (let i of tasks) {
+      currentIds.push(i.id + "");
+    }
+
+    let addId = "";
+
+    while (currentIds.includes(addId) || addId === "") {
+      addId = prompt("Enter task ID: ");
+    }
+
+    let addText = prompt("Enter the task: ");
+    let addDay = prompt("Enter task deadline: ");
+
+    tasks.push({
+      id: addId,
+      text: addText,
+      day: addDay,
+      reminder: false,
+    });
+
+    setTasks(tasks.filter((task) => true));
+  };
+
   const handleDelete = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
   return (
     <div style={{ backgroundColor: "grey", padding: 20 }}>
-      <Header title="Task Tracker" />
+      <Header title="Task Tracker" onAdd={handleAdd} />
       <Tasks tasks={tasks} onDelete={handleDelete} />
     </div>
   );

@@ -7,7 +7,7 @@ const Header = (props) => {
         <b>{props.title}</b>
       </span>
       <button
-        onClick={() => window.open("https://google.com")}
+        onClick={props.onAdd}
         style={{ margin: 5 }}
         className="btn btn-primary"
       >
