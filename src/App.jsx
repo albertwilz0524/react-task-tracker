@@ -13,26 +13,27 @@ function App() {
     let currentIds = [];
 
     for (let i of tasks) {
-      currentIds.push(i.id + "");
+      currentIds.push(i.id);
     }
 
-    let addId = "";
+    let addId = 1;
+    let addText = "";
+    let addDay = "";
 
-    while (currentIds.includes(addId) || addId === "") {
-      addId = prompt("Enter task ID: ");
+    while (currentIds.includes(addId)) {
+      addId++;
+    }
+    while (addText === "" || addText === null) {
+      addText = prompt("Enter the task: ");
+    }
+    while (addDay === "" || addDay === null) {
+      addDay = prompt("Enter task deadline: ");
     }
 
-    let addText = prompt("Enter the task: ");
-    let addDay = prompt("Enter task deadline: ");
-
-    tasks.push({
-      id: addId,
-      text: addText,
-      day: addDay,
-      reminder: false,
-    });
-
-    setTasks(tasks.filter((task) => true));
+    setTasks([
+      ...tasks,
+      { id: addId, text: addText, day: addDay, reminder: false },
+    ]);
   };
 
   const handleDelete = (id) => {

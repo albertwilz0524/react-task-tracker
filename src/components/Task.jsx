@@ -8,7 +8,7 @@ const Task = (props) => {
         onClick={props.onDelete}
         style={{ color: "red", cursor: "pointer" }}
       />
-      <p>{props.task.day}</p>
+      <p>Deadline: {props.task.day}</p>
     </div>
   );
 };
